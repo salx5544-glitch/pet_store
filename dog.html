@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="dogs_page_title">الكلاب</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- شاشة التحميل التفاعلية -->
+  <div id="preloader" class="preloader" aria-live="polite">
+    <div class="preloader-box">
+      <div id="preloader-emoji" class="preloader-emoji" aria-hidden="true">🐱</div>
+      <p class="preloader-text" data-i18n="loading_text">جاري تحميل المتجر...</p>
+      <div class="preloader-progress-track">
+        <div id="preloader-progress-bar" class="preloader-progress-bar"></div>
+      </div>
+      <span id="preloader-percent" class="preloader-percent">0%</span>
+    </div>
+  </div>
+  <!-- زر تبديل اللغة -->
+  <div class="lang-switcher">
+    <button id="lang-toggle" type="button" aria-label="Switch language">English</button>
+  </div>
+
+  <!-- زر السهم العائم للانتقال إلى الصفحة الرئيسية -->
+  <a href="index.html" class="big-arrow-btn" data-i18n-aria-label="back_home_label" aria-label="العودة إلى الصفحة الرئيسية">
+    &rightarrow;
+  </a>
+
+  <!-- أوراق الزوايا الأربع بصيغة SVG -->
+  <svg class="leaf-frame top-right" viewBox="0 0 200 200" preserveAspectRatio="none">
+    <path d="M200,0 C140,10 90,50 70,110 C120,100 170,60 200,0 Z" fill="#2e7d32"/>
+    <path d="M200,0 C160,60 140,120 150,180 C185,130 200,70 200,0 Z" fill="#4caf50"/>
+    <path d="M200,0 C110,5 40,20 0,60 C60,70 130,50 200,0 Z" fill="#1b5e20"/>
+  </svg>
+
+  <svg class="leaf-frame top-left" viewBox="0 0 200 200" preserveAspectRatio="none">
+    <path d="M200,0 C140,10 90,50 70,110 C120,100 170,60 200,0 Z" fill="#2e7d32"/>
+    <path d="M200,0 C160,60 140,120 150,180 C185,130 200,70 200,0 Z" fill="#4caf50"/>
+    <path d="M200,0 C110,5 40,20 0,60 C60,70 130,50 200,0 Z" fill="#1b5e20"/>
+  </svg>
+
+  <svg class="leaf-frame bottom-right" viewBox="0 0 200 200" preserveAspectRatio="none">
+    <path d="M200,0 C140,10 90,50 70,110 C120,100 170,60 200,0 Z" fill="#2e7d32"/>
+    <path d="M200,0 C160,60 140,120 150,180 C185,130 200,70 200,0 Z" fill="#4caf50"/>
+    <path d="M200,0 C110,5 40,20 0,60 C60,70 130,50 200,0 Z" fill="#1b5e20"/>
+  </svg>
+
+  <svg class="leaf-frame bottom-left" viewBox="0 0 200 200" preserveAspectRatio="none">
+    <path d="M200,0 C140,10 90,50 70,110 C120,100 170,60 200,0 Z" fill="#2e7d32"/>
+    <path d="M200,0 C160,60 140,120 150,180 C185,130 200,70 200,0 Z" fill="#4caf50"/>
+    <path d="M200,0 C110,5 40,20 0,60 C60,70 130,50 200,0 Z" fill="#1b5e20"/>
+  </svg>
+
+  <div class="Things">
+    <div class="cards" id="DOG1">
+      <img src="Screenshot 2026-11-23 8.10.10 PM.avif" data-i18n-alt="dog1_alt" alt="صورة متجر الحيوانات الأليفة"
+        style="width: 100%; max-width: 800px; height: auto;">
+      <h4 data-i18n="click_for_details" style="display: flex; justify-content: center; align-items: center; color:#2e7d32;">انقر للتفاصيل</h4>
+    </div>
+    <div class="cards" id="DOG2">
+      <img src="Screenshot 2026-11-23 8.14.23 PM.avif" data-i18n-alt="dog2_alt" alt="صورة متجر الحيوانات الأليفة"
+        style="width: 100%; max-width: 800px; height: auto;">
+      <h4 data-i18n="click_for_details" style="display: flex; justify-content: center; align-items: center; color:#2e7d32;">انقر للتفاصيل</h4>
+    </div>
+    <div class="cards" id="DOG3">
+      <img src="Screenshot 2026-11-23 8.16.58 PM.avif" data-i18n-alt="dog3_alt" alt="صورة متجر الحيوانات الأليفة"
+        style="width: 100%; max-width: 800px; height: auto;">
+      <h4 data-i18n="click_for_details" style="display: flex; justify-content: center; align-items: center; color:#2e7d32;">انقر للتفاصيل</h4>
+    </div>
+    <div class="cards" id="DOG4">
+      <img src="GOGY.avif" data-i18n-alt="dog4_alt" alt="صورة متجر الحيوانات الأليفة"
+        style="width: 100%; max-width: 800px; height: auto;">
+      <h4 data-i18n="click_for_details" style="display: flex; justify-content: center; align-items: center; color:#2e7d32;">انقر للتفاصيل</h4>
+    </div>
+    <div class="cards" id="DOG5">
+      <img src="Screenshot 2026-11-23 8.24.59 PM.avif" data-i18n-alt="dog5_alt" alt="صورة متجر الحيوانات الأليفة"
+        style="width: 100%; max-width: 800px; height: auto;">
+      <h4 data-i18n="click_for_details" style="display: flex; justify-content: center; align-items: center; color:#2e7d32;">انقر للتفاصيل</h4>
+    </div>
+    <div class="cards" id="DOG6">
+      <img src="Screenshot 2026-11-23 8.25.56 PM.avif" data-i18n-alt="dog6_alt" alt="صورة متجر الحيوانات الأليفة"
+        style="width: 100%; max-width: 800px; height: auto;">
+      <h4 data-i18n="click_for_details" style="display: flex; justify-content: center; align-items: center; color:#2e7d32;">انقر للتفاصيل</h4>
+    </div>
+  </div>
+
+  <script src="items.js"></script>
+</body>
+</html>

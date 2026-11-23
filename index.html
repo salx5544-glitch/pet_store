@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="page_title">متجر الحيوانات الأليفة</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- شاشة التحميل التفاعلية -->
+  <div id="preloader" class="preloader" aria-live="polite">
+    <div class="preloader-box">
+      <div id="preloader-emoji" class="preloader-emoji" aria-hidden="true">🐱</div>
+      <p class="preloader-text" data-i18n="loading_text">جاري تحميل المتجر...</p>
+      <div class="preloader-progress-track">
+        <div id="preloader-progress-bar" class="preloader-progress-bar"></div>
+      </div>
+      <span id="preloader-percent" class="preloader-percent">0%</span>
+    </div>
+  </div>
+  <!-- زر تبديل اللغة -->
+  <div class="lang-switcher">
+    <button id="lang-toggle" type="button" aria-label="Switch language">English</button>
+  </div>
+
+  <!-- أوراق الزوايا الأربع بصيغة SVG -->
+  <svg class="leaf-frame top-right" viewBox="0 0 200 200" preserveAspectRatio="none">
+    <path d="M200,0 C140,10 90,50 70,110 C120,100 170,60 200,0 Z" fill="#2e7d32"/>
+    <path d="M200,0 C160,60 140,120 150,180 C185,130 200,70 200,0 Z" fill="#4caf50"/>
+    <path d="M200,0 C110,5 40,20 0,60 C60,70 130,50 200,0 Z" fill="#1b5e20"/>
+  </svg>
+
+  <svg class="leaf-frame top-left" viewBox="0 0 200 200" preserveAspectRatio="none">
+    <path d="M200,0 C140,10 90,50 70,110 C120,100 170,60 200,0 Z" fill="#2e7d32"/>
+    <path d="M200,0 C160,60 140,120 150,180 C185,130 200,70 200,0 Z" fill="#4caf50"/>
+    <path d="M200,0 C110,5 40,20 0,60 C60,70 130,50 200,0 Z" fill="#1b5e20"/>
+  </svg>
+
+  <svg class="leaf-frame bottom-right" viewBox="0 0 200 200" preserveAspectRatio="none">
+    <path d="M200,0 C140,10 90,50 70,110 C120,100 170,60 200,0 Z" fill="#2e7d32"/>
+    <path d="M200,0 C160,60 140,120 150,180 C185,130 200,70 200,0 Z" fill="#4caf50"/>
+    <path d="M200,0 C110,5 40,20 0,60 C60,70 130,50 200,0 Z" fill="#1b5e20"/>
+  </svg>
+
+  <svg class="leaf-frame bottom-left" viewBox="0 0 200 200" preserveAspectRatio="none">
+    <path d="M200,0 C140,10 90,50 70,110 C120,100 170,60 200,0 Z" fill="#2e7d32"/>
+    <path d="M200,0 C160,60 140,120 150,180 C185,130 200,70 200,0 Z" fill="#4caf50"/>
+    <path d="M200,0 C110,5 40,20 0,60 C60,70 130,50 200,0 Z" fill="#1b5e20"/>
+  </svg>
+
+  <main>
+    <div class="content">
+      <h1 data-i18n="hero_title">مرحبًا بكم في متجر الحيوانات الأليفة</h1>
+    </div>
+
+    <a href="cats.html" style="text-decoration: none; cursor: pointer;">
+      <div class="content">
+        <img src="Screenshot 2026-11-12 10.43.24 PM.avif" data-i18n-alt="cats_alt" alt="صورة متجر الحيوانات الأليفة"
+          style="width: 100%; max-width: 800px; height: auto;">
+        <div class="into">
+          <h2 data-i18n="cats_title">عالم القطط</h2>
+          <p data-i18n="cats_desc">اكتشف عالم القطط الرائعة واللطيفة!</p>
+        </div>
+      </div>
+    </a>
+
+    <a href="dog.html" style="text-decoration: none; cursor: pointer;">
+      <div class="content">
+        <img src="Screenshot 2026-11-12 10.43.38 PM.avif" data-i18n-alt="dogs_alt" alt="صورة متجر الحيوانات الأليفة"
+          style="width: 100%; max-width: 800px; height: auto;">
+        <div class="into">
+          <h2 data-i18n="dogs_title">عالم الكلاب</h2>
+          <p data-i18n="dogs_desc">اكتشف عالم الكلاب المحبوبة والطموحة!</p>
+        </div>
+      </div>
+    </a>
+
+    <a href="fish.html" style="text-decoration: none; cursor: pointer;">
+      <div class="content">
+        <img src="Screenshot 2026-11-12 10.43.51 PM.avif" data-i18n-alt="fish_alt" alt="صورة متجر الحيوانات الأليفة"
+          style="width: 100%; max-width: 800px; height: auto;">
+        <div class="into">
+          <h2 data-i18n="fish_title">عالم الأسماك</h2>
+          <p data-i18n="fish_desc">اكتشف عالم الأسماك المذهل والجميل!</p>
+        </div>
+      </div>
+    </a>
+
+    <a href="bird.html" style="text-decoration: none; cursor: pointer;">
+      <div class="content">
+        <img src="Screenshot 2026-11-12 10.44.01 PM.avif" data-i18n-alt="birds_alt" alt="صورة متجر الحيوانات الأليفة"
+          style="width: 100%; max-width: 800px; height: auto;">
+        <div class="into">
+          <h2 data-i18n="birds_title">عالم الطيور</h2>
+          <p data-i18n="birds_desc">اكتشف عالم الطيور المذهل والمليء بالمغامرات!</p>
+        </div>
+      </div>
+    </a>
+  </main>
+
+  <script src="items.js"></script>
+</body>
+</html>
