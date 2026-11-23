@@ -245,6 +245,181 @@ position: absolute;
   font-weight: 800;
   direction: ltr;
 }
+/* =========================================================
+   تنسيق صفحة معلومات المنتج وتفاصيله
+   ========================================================= */
+
+.product-detail-page {
+  display: none;
+  min-height: 100dvh;
+  width: 100%;
+  padding: clamp(64px, 8vw, 88px) clamp(12px, 3vw, 24px) clamp(28px, 5vw, 48px);
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+
+.product-detail-card {
+  max-width: 960px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #dce9de;
+  border-radius: clamp(16px, 3vw, 24px);
+  padding: clamp(16px, 4vw, 32px);
+  box-shadow: 0 16px 40px rgba(27, 94, 32, 0.1);
+  text-align: start;
+}
+
+.product-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: clamp(18px, 3.5vw, 26px);
+  padding-bottom: 14px;
+  border-bottom: 1px solid #e3eee5;
+}
+
+.product-back-btn {
+  padding: 9px 18px;
+  border-radius: 11px;
+  border: 1.5px solid #2e7d32;
+  background: #ffffff;
+  color: #1b5e20;
+  font-weight: 700;
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.product-back-btn:hover {
+  background: #2e7d32;
+  color: #ffffff;
+}
+
+.product-code-badge {
+  background: #eef6ef;
+  color: #2e7d32;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: clamp(0.78rem, 2.2vw, 0.86rem);
+  font-weight: 700;
+}
+
+.product-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: clamp(20px, 4vw, 32px);
+  align-items: center;
+}
+
+.product-media-box {
+  border-radius: 18px;
+  overflow: hidden;
+  background: #f4f9f4;
+  border: 1px solid #e2ede3;
+}
+
+.product-detail-img {
+  width: 100%;
+  max-height: 430px;
+  object-fit: cover;
+  display: block;
+}
+
+.product-detail-title {
+  margin: 0 0 14px;
+  color: #1b5e20;
+  font-size: clamp(1.35rem, 4vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.product-price-box {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+  padding: 10px 16px;
+  background: #f1f8f2;
+  border-inline-start: 4px solid #2e7d32;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: clamp(1rem, 3vw, 1.15rem);
+}
+
+.product-price-lyd {
+  color: #1b5e20;
+}
+
+.product-price-sep {
+  color: #8fa692;
+}
+
+.product-price-usd {
+  color: #455a47;
+}
+
+.product-detail-desc {
+  margin: 0 0 20px;
+  color: #2b332c;
+  font-size: clamp(0.95rem, 2.8vw, 1.05rem);
+  line-height: 1.85;
+}
+
+.product-features-wrap {
+  margin-bottom: 24px;
+}
+
+.product-features-heading {
+  margin: 0 0 10px;
+  font-size: clamp(0.92rem, 2.6vw, 1rem);
+  font-weight: 700;
+  color: #1b5e20;
+}
+
+.product-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.product-feature-chip {
+  background: #f6fbf7;
+  border: 1px solid #d5e6d7;
+  color: #264629;
+  padding: 7px 12px;
+  border-radius: 10px;
+  font-size: clamp(0.84rem, 2.4vw, 0.94rem);
+  font-weight: 600;
+}
+
+.product-whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 320px;
+  padding: 13px 22px;
+  border-radius: 12px;
+  background: #2e7d32;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: clamp(0.95rem, 2.8vw, 1.04rem);
+  box-shadow: 0 6px 18px rgba(46, 125, 50, 0.25);
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.product-whatsapp-btn:hover {
+  background: #1b5e20;
+  transform: translateY(-1px);
+}
 /* تصغير حجم الأوراق تلقائياً في شاشات الهواتف المحمولة */
 @media (max-width: 768px) {
   .big-arrow-btn {
