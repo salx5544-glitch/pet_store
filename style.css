@@ -79,12 +79,11 @@ body {
   z-index: 999;
   font-size: 50px; /* حجم السهم الكبير */
   color: #000000;
-  border-radius: 50%;
+  border-radius: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  padding: 10px;
   transition: all 0.3s ease-in-out;
 }
 
@@ -248,6 +247,9 @@ position: absolute;
 }
 /* تصغير حجم الأوراق تلقائياً في شاشات الهواتف المحمولة */
 @media (max-width: 768px) {
+  .big-arrow-btn {
+    font-size: 40px; /* تصغير حجم السهم الكبير */
+  }
   .Things {
     grid-template-columns: repeat(2, 1fr); /* عمود واحد */
     gap: 20px; /* تقليل المسافة بين المنتجات */

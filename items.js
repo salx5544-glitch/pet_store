@@ -495,6 +495,100 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadTranslations();
 
+  const preloader = document.getElementById("preloader");
+  const emojiEl = document.getElementById("preloader-emoji");
+  const progressBar = document.getElementById("preloader-progress-bar");
+  const percentText = document.getElementById("preloader-percent");
+
+  const petEmojis = ["🐱", "🐶", "🐟", "🐦"];
+  let emojiIndex = 0;
+  let emojiTimer = null;
+  let morphTimeout = null;
+  let preloaderHidden = false;
+  let displayedPercent = 0;
+
+  function cyclePetEmoji() {
+    if (!emojiEl || preloaderHidden) return;
+    emojiIndex = (emojiIndex + 1) % petEmojis.length;
+    emojiEl.classList.remove("is-morphing");
+    void emojiEl.offsetWidth; // إعادة تشغيل حركة التصغير والتكبير
+    emojiEl.textContent = petEmojis[emojiIndex];
+    emojiEl.classList.add("is-morphing");
+  }
+
+  function updateProgressUI(targetPercent) {
+    const clamped = Math.max(0, Math.min(100, Math.round(targetPercent)));
+    if (clamped < displayedPercent && !preloaderHidden) return;
+    displayedPercent = clamped;
+
+    if (progressBar) progressBar.style.width = `${displayedPercent}%`;
+    if (percentText) percentText.textContent = `${displayedPercent}%`;
+  }
+
+  function trackRealImageProgress() {
+    const imgs = Array.from(document.querySelectorAll("img"));
+    if (!imgs.length) {
+      updateProgressUI(100);
+      return;
+    }
+
+    let loadedCount = 0;
+
+    const recalculate = () => {
+      const ratio = (loadedCount / imgs.length) * 100;
+      // نترك آخر 5% لحين اكتمال حدث load الكامل للصفحة
+      updateProgressUI(document.readyState === "complete" ? 100 : Math.min(95, ratio));
+    };
+
+    imgs.forEach((img) => {
+      if (img.complete) {
+        loadedCount += 1;
+      } else {
+        const onDone = () => {
+          loadedCount += 1;
+          recalculate();
+        };
+        img.addEventListener("load", onDone, { once: true });
+        img.addEventListener("error", onDone, { once: true });
+      }
+    });
+
+    recalculate();
+  }
+
+  function hidePreloader() {
+    if (!preloader || preloaderHidden) return;
+    preloaderHidden = true;
+
+    clearInterval(emojiTimer);
+    clearTimeout(morphTimeout);
+    updateProgressUI(100);
+
+    setTimeout(() => {
+      preloader.classList.add("is-hidden");
+      setTimeout(() => {
+        preloader.remove();
+      }, 400);
+    }, 180);
+  }
+
+  if (preloader) {
+    if (emojiEl) {
+      emojiEl.textContent = petEmojis[0];
+      emojiEl.classList.add("is-morphing");
+    }
+
+    trackRealImageProgress();
+    emojiTimer = setInterval(cyclePetEmoji, 950);
+
+    if (document.readyState === "complete") {
+      hidePreloader();
+    } else {
+      window.addEventListener("load", hidePreloader, { once: true });
+      setTimeout(hidePreloader, 5000);
+    }
+  }
+
   const thingsContainer = document.querySelector(".Things");
   const arrowBtn = document.querySelector(".big-arrow-btn");
   const cards = document.querySelectorAll(".Things .cards");
@@ -642,96 +736,3 @@ document.addEventListener("DOMContentLoaded", () => {
     openStandaloneProductPage(initialHash, false);
   }
 });
-const preloader = document.getElementById("preloader");
-  const emojiEl = document.getElementById("preloader-emoji");
-  const progressBar = document.getElementById("preloader-progress-bar");
-  const percentText = document.getElementById("preloader-percent");
-
-  const petEmojis = ["🐱", "🐶", "🐟", "🐦"];
-  let emojiIndex = 0;
-  let emojiTimer = null;
-  let morphTimeout = null;
-  let preloaderHidden = false;
-  let displayedPercent = 0;
-
-  function cyclePetEmoji() {
-    if (!emojiEl || preloaderHidden) return;
-    emojiIndex = (emojiIndex + 1) % petEmojis.length;
-    emojiEl.classList.remove("is-morphing");
-    void emojiEl.offsetWidth; // إعادة تشغيل حركة التصغير والتكبير
-    emojiEl.textContent = petEmojis[emojiIndex];
-    emojiEl.classList.add("is-morphing");
-  }
-
-  function updateProgressUI(targetPercent) {
-    const clamped = Math.max(0, Math.min(100, Math.round(targetPercent)));
-    if (clamped < displayedPercent && !preloaderHidden) return;
-    displayedPercent = clamped;
-
-    if (progressBar) progressBar.style.width = `${displayedPercent}%`;
-    if (percentText) percentText.textContent = `${displayedPercent}%`;
-  }
-
-  function trackRealImageProgress() {
-    const imgs = Array.from(document.querySelectorAll("img"));
-    if (!imgs.length) {
-      updateProgressUI(100);
-      return;
-    }
-
-    let loadedCount = 0;
-
-    const recalculate = () => {
-      const ratio = (loadedCount / imgs.length) * 100;
-      // نترك آخر 5% لحين اكتمال حدث load الكامل للصفحة
-      updateProgressUI(document.readyState === "complete" ? 100 : Math.min(95, ratio));
-    };
-
-    imgs.forEach((img) => {
-      if (img.complete) {
-        loadedCount += 1;
-      } else {
-        const onDone = () => {
-          loadedCount += 1;
-          recalculate();
-        };
-        img.addEventListener("load", onDone, { once: true });
-        img.addEventListener("error", onDone, { once: true });
-      }
-    });
-
-    recalculate();
-  }
-
-  function hidePreloader() {
-    if (!preloader || preloaderHidden) return;
-    preloaderHidden = true;
-
-    clearInterval(emojiTimer);
-    clearTimeout(morphTimeout);
-    updateProgressUI(100);
-
-    setTimeout(() => {
-      preloader.classList.add("is-hidden");
-      setTimeout(() => {
-        preloader.remove();
-      }, 400);
-    }, 180);
-  }
-
-  if (preloader) {
-    if (emojiEl) {
-      emojiEl.textContent = petEmojis[0];
-      emojiEl.classList.add("is-morphing");
-    }
-
-    trackRealImageProgress();
-    emojiTimer = setInterval(cyclePetEmoji, 950);
-
-    if (document.readyState === "complete") {
-      hidePreloader();
-    } else {
-      window.addEventListener("load", hidePreloader, { once: true });
-      setTimeout(hidePreloader, 5000);
-    }
-  }
