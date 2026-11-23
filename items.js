@@ -420,12 +420,14 @@ const uiLabels = {
   ar: {
     backToGallery: "→ رجوع إلى صفحة المعرض",
     productCode: "رمز المنتج",
+    featuresTitle: "أبرز المميزات",
     orderWhatsapp: "اطلب الآن عبر واتساب",
     whatsappMessage: (name, id, price) => `مرحباً، أود الاستفسار عن ${name} (${id}) - السعر: ${price}`
   },
   en: {
     backToGallery: "← Back to gallery",
     productCode: "Item ID",
+    featuresTitle: "Key Highlights",
     orderWhatsapp: "Order via WhatsApp",
     whatsappMessage: (name, id, price) => `Hello, I would like to ask about ${name} (${id}) - Price: ${price}`
   }
@@ -503,7 +505,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const petEmojis = ["🐱", "🐶", "🐟", "🐦"];
   let emojiIndex = 0;
   let emojiTimer = null;
-  let morphTimeout = null;
   let preloaderHidden = false;
   let displayedPercent = 0;
 
@@ -511,7 +512,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!emojiEl || preloaderHidden) return;
     emojiIndex = (emojiIndex + 1) % petEmojis.length;
     emojiEl.classList.remove("is-morphing");
-    void emojiEl.offsetWidth; // إعادة تشغيل حركة التصغير والتكبير
+    void emojiEl.offsetWidth;
     emojiEl.textContent = petEmojis[emojiIndex];
     emojiEl.classList.add("is-morphing");
   }
@@ -536,7 +537,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const recalculate = () => {
       const ratio = (loadedCount / imgs.length) * 100;
-      // نترك آخر 5% لحين اكتمال حدث load الكامل للصفحة
       updateProgressUI(document.readyState === "complete" ? 100 : Math.min(95, ratio));
     };
 
@@ -561,7 +561,6 @@ document.addEventListener("DOMContentLoaded", () => {
     preloaderHidden = true;
 
     clearInterval(emojiTimer);
-    clearTimeout(morphTimeout);
     updateProgressUI(100);
 
     setTimeout(() => {
@@ -599,37 +598,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const fullPageView = document.createElement("main");
   fullPageView.id = "standalone-product-page";
-  fullPageView.style.cssText = `
-    display: none;
-    min-height: 100vh;
-    width: 100%;
-    padding: 36px 20px;
-    box-sizing: border-box;
-    position: relative;
-    z-index: 2;
-  `;
+  fullPageView.className = "product-detail-page";
 
   fullPageView.innerHTML = `
-    <div style="max-width: 900px; margin: 0 auto; background: rgba(255, 255, 255, 0.95); border-radius: 18px; padding: 28px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1); text-align: start;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid #e5ece6; padding-bottom: 14px;">
-        <button type="button" id="back-to-main-page" style="padding: 9px 18px; border-radius: 10px; border: 1.5px solid #2e7d32; background: #ffffff; color: #2e7d32; font-weight: bold; cursor: pointer; font-size: 0.95rem;"></button>
-        <span id="product-code-badge" style="font-size: 0.85rem; color: #5f6c62; font-weight: bold;"></span>
+    <div class="product-detail-card">
+      <div class="product-detail-header">
+        <button type="button" id="back-to-main-page" class="product-back-btn"></button>
+        <span id="product-code-badge" class="product-code-badge"></span>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 26px; align-items: center;">
-        <div>
-          <img id="full-cat-img" src="" alt="" style="width: 100%; max-height: 420px; object-fit: cover; border-radius: 14px; display: block;" />
+      <div class="product-detail-grid">
+        <div class="product-media-box">
+          <img id="full-cat-img" src="" alt="" class="product-detail-img" />
         </div>
-        <div>
-          <h1 id="full-cat-name" style="margin: 0 0 12px; color: #1b5e20; font-size: 1.7rem;"></h1>
-          <div style="margin-bottom: 16px; padding: 10px 14px; background: #f2f7f3; border-inline-start: 4px solid #2e7d32; border-radius: 8px; font-weight: bold; font-size: 1.1rem;">
-            <span id="full-cat-lyd" style="color: #2e7d32;"></span>
-            <span style="margin: 0 10px; color: #999;">|</span>
-            <span id="full-cat-usd" style="color: #444;"></span>
+
+        <div class="product-info-box">
+          <h1 id="full-cat-name" class="product-detail-title"></h1>
+
+          <div class="product-price-box">
+            <span id="full-cat-lyd" class="product-price-lyd"></span>
+            <span class="product-price-sep">•</span>
+            <span id="full-cat-usd" class="product-price-usd"></span>
           </div>
-          <p id="full-cat-desc" style="line-height: 1.8; margin: 0 0 16px; color: #222; font-size: 1rem;"></p>
-          <ul id="full-cat-features" style="padding-inline-start: 18px; margin: 0 0 22px; color: #444; line-height: 1.8;"></ul>
-          <a id="full-cat-whatsapp" href="#" target="_blank" rel="noopener" style="display: inline-block; padding: 12px 24px; border-radius: 12px; background: #2e7d32; color: #fff; text-decoration: none; font-weight: bold; font-size: 1rem;"></a>
+
+          <p id="full-cat-desc" class="product-detail-desc"></p>
+
+          <div class="product-features-wrap">
+            <h2 id="product-features-heading" class="product-features-heading"></h2>
+            <ul id="full-cat-features" class="product-features-list"></ul>
+          </div>
+
+          <a id="full-cat-whatsapp" href="#" target="_blank" rel="noopener" class="product-whatsapp-btn"></a>
         </div>
       </div>
     </div>
@@ -654,6 +653,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.title = `${item.name} | ${originalTitle}`;
     document.getElementById("product-code-badge").textContent = `${labels.productCode}: ${itemId}`;
+    document.getElementById("product-features-heading").textContent = labels.featuresTitle;
     backBtn.textContent = labels.backToGallery;
 
     const imgEl = document.getElementById("full-cat-img");
@@ -665,7 +665,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("full-cat-usd").textContent = item.priceUSD;
     document.getElementById("full-cat-desc").textContent = item.description;
     document.getElementById("full-cat-features").innerHTML = (item.features || [])
-      .map((f) => `<li>${f}</li>`)
+      .map((f) => `<li class="product-feature-chip">${f}</li>`)
       .join("");
 
     const waBtn = document.getElementById("full-cat-whatsapp");
